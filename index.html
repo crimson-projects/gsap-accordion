@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>GSAP Accordion</title>
+		<link rel="stylesheet" href="styles.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+		<script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+	</head>
+	<body>
+		<div class="acc-toggle" data-collapse="">
+			<div class="acc-block">
+				<div class="acc-no">(01)</div>
+				<div class="acc-title">Financial Statement</div>
+				<div class="acc-toggle-icon">
+					<ion-icon name="add-outline"></ion-icon>
+				</div>
+			</div>
+		</div>
+		<ul>
+			<li>
+				Lorem Ipsum is simply dummy text of the printing and typesetting
+				industry.
+			</li>
+			<li>Lorem Ipsum has been the industry's standard dummy text</li>
+			<li>when an unknown printer took a galley of type and scrambled.</li>
+		</ul>
+
+		<div class="acc-toggle" data-collapse="">
+			<div class="acc-block">
+				<div class="acc-no">(02)</div>
+				<div class="acc-title">TAX</div>
+				<div class="acc-toggle-icon">
+					<ion-icon name="add-outline"></ion-icon>
+				</div>
+			</div>
+		</div>
+		<ul>
+			<li>
+				Lorem Ipsum is simply dummy text of the printing and typesetting
+				industry.
+			</li>
+			<li>Lorem Ipsum has been the industry's standard dummy text</li>
+			<li>when an unknown printer took a galley of type and scrambled.</li>
+		</ul>
+
+		<div class="acc-toggle" data-collapse="">
+			<div class="acc-block">
+				<div class="acc-no">(03)</div>
+				<div class="acc-title">Accounting</div>
+				<div class="acc-toggle-icon">
+					<ion-icon name="add-outline"></ion-icon>
+				</div>
+			</div>
+		</div>
+		<ul>
+			<li>
+				Lorem Ipsum is simply dummy text of the printing and typesetting
+				industry.
+			</li>
+			<li>Lorem Ipsum has been the industry's standard dummy text</li>
+			<li>when an unknown printer took a galley of type and scrambled.</li>
+		</ul>
+		<script>
+			let parent = document.querySelectorAll("[data-collapse");
+			parent.forEach((element) => {
+				let clickTarget = element.querySelector("*");
+				let collapseElement = element.nextElementSibling;
+				let collapseElementChildren = collapseElement.children;
+				let tl = new TimelineMax({
+					reversed: true,
+					paused: true,
+				});
+
+				tl.from(
+					collapseElement,
+					1.6,
+					{
+						className: "+=heightZero",
+						ease: Expo.easeInOut,
+					},
+					"open"
+				);
+				tl.staggerFrom(
+					collapseElementChildren,
+					1,
+					{
+						autoAlpha: 0,
+						y: "40%",
+						ease: Expo.easeInOut,
+					},
+					0.08,
+					"open+=.1"
+				);
+
+				clickTarget.addEventListener("click", () => {
+					tl.reversed() ? tl.play() : tl.reverse();
+				});
+			});
+		</script>
+	</body>
+</html>
